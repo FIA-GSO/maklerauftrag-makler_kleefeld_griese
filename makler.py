@@ -1,3 +1,9 @@
+# -------------Makler Programm----------------
+# Made by: Bennet Griese und Klaikleefeld
+# Datum: 29.01.2023
+# ---------------------------------------------
+
+
 flaechen = []
 
 while True:
