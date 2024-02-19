@@ -1,5 +1,5 @@
 # -------------Makler Programm----------------
-# Made by: Bennet Griese und Klaikleefeld
+# Made by: Bennet Griese und Kaikleefeld
 # Datum: 29.01.2023 
 # ---------------------------------------------
 
