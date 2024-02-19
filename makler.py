@@ -18,13 +18,14 @@ while True:
     
     if auswahl == '1': # Fläche hinzufügen
         try:
-            name = input("Bitte geben Sie den Raumnamen ein: ")
-            laenge = float(input("Bitte geben Sie die Länge ein: "))
-            breite = float(input("Bitte geben Sie die Breite ein: "))
+            name = input(Fore.GREEN + "Bitte geben Sie den Raumnamen ein: " + Style.RESET_ALL)
+            laenge = float(input(Fore.GREEN + "Bitte geben Sie die Länge ein: " + Style.RESET_ALL))
+            breite = float(input(Fore.GREEN + "Bitte geben Sie die Breite ein: " + Style.RESET_ALL))
             räume.append(Raum(name,laenge,breite)) # Raumnamen in Liste einfügen
             print(Fore.YELLOW + f"Raum {name} hinzugefügt." + Style.RESET_ALL)
         except Exception as e:
-            print("Fehler bei der Eingabe: ", e)
+            print(Fore.RED + "Fehler bei der Eingabe: ", e)
+            print(Style.RESET_ALL)
             input()
             os.system('cls' if os.name == 'nt' else 'clear')
             
