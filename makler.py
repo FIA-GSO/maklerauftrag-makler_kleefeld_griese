@@ -4,9 +4,10 @@
 # ---------------------------------------------
 
 from colorama import Fore, Style
+from raum import Raum
+import os
 
-flaechen = [] # Liste für die Flächen
-raumname = [] # Liste für die Raumnamen
+räume = [] # Liste für die Raumnamen
 
 while True:
     print(Fore.CYAN + "\nWillkommen beim Makler-Tool!" + Style.RESET_ALL)
@@ -14,22 +15,26 @@ while True:
     print(Fore.GREEN + "2. Gesamtfläche berechnen" + Style.RESET_ALL)
     print(Fore.RED + "3. Beenden" + Style.RESET_ALL)
     auswahl = input("Bitte treffen Sie eine Auswahl (1, 2 oder 3): ")
-
+    
     if auswahl == '1': # Fläche hinzufügen
-        name = input("Bitte geben Sie den Raumnamen ein: ")
-        laenge = float(input("Bitte geben Sie die Länge ein: "))
-        breite = float(input("Bitte geben Sie die Breite ein: "))
-        flaeche = laenge * breite # Berechnung der Raumfläche
-        raumname.append(name) # Raumnamen in Liste einfügen
-        flaechen.append(flaeche) # Flächen in Liste einfügen
-        print(Fore.YELLOW + f"Fläche {flaeche} hinzugefügt." + Style.RESET_ALL)
+        try:
+            name = input("Bitte geben Sie den Raumnamen ein: ")
+            laenge = float(input("Bitte geben Sie die Länge ein: "))
+            breite = float(input("Bitte geben Sie die Breite ein: "))
+            räume.append(Raum(name,laenge,breite)) # Raumnamen in Liste einfügen
+            print(Fore.YELLOW + f"Raum {name} hinzugefügt." + Style.RESET_ALL)
+        except Exception as e:
+            print("Fehler bei der Eingabe: ", e)
+            input()
+            os.system('cls' if os.name == 'nt' else 'clear')
+            
     elif auswahl == '2': # Gesamtfläche berechnen und Räume ausgeben
-        gesamtflaeche = sum(flaechen) # Berechnung der Gesamtfläche
+        gesamtflaeche = sum(int(raum.getFläche()) for raum in räume) # Berechnung der Gesamtfläche
         print(Fore.YELLOW + f"Die Gesamtfläche beträgt: {gesamtflaeche}" + Style.RESET_ALL)
-        for items in raumname: # Ausgabe der Räume und Flächen
+        for raum in räume: # Ausgabe der Räume1 und Flächen
             print(Fore.YELLOW + "-------------------" + Style.RESET_ALL)
-            print(Fore.YELLOW + f"Raum: {items}" + Style.RESET_ALL)
-            print(Fore.YELLOW + f"Fläche: {flaechen[raumname.index(items)]}" + Style.RESET_ALL)
+            print(Fore.YELLOW + f"Raum: {raum.getName()}" + Style.RESET_ALL)
+            print(Fore.YELLOW + f"Fläche: {raum.getFläche()}" + Style.RESET_ALL)
         break # Programm beenden
     elif auswahl == '3': # Programm beenden
         print(Fore.RED + "Das Programm wird beendet." + Style.RESET_ALL)
